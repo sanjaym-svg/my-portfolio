@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sanjay M — Freelance Web Developer, Video Editor & AI Automation Builder. I create modern websites, engaging video content, and smart automation systems that help brands grow.">
+  <meta name="keywords" content="freelance web developer, video editor, AI automation, portfolio, Sanjay M, web design, motion graphics">
+  <meta name="author" content="Sanjay M">
+  <meta name="theme-color" content="#06060e">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sanjay M — Web Developer · Video Editor · AI Automation">
+  <meta property="og:description" content="I build websites, edit videos, and create AI automations that help brands grow.">
+  <meta property="og:type" content="website">
+
+  <title>Sanjay M — Web Developer · Video Editor · AI Automation</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body class="loading">
+
+  <!-- ========== CURSOR GLOW ========== -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ========== LOADING SCREEN ========== -->
+  <div class="loader" id="loader">
+    <div class="loader-name" id="loaderName">
+      <span>S</span><span>A</span><span>N</span><span>J</span><span>A</span><span>Y</span><span>&nbsp;</span><span>M</span>
+    </div>
+    <div class="loader-tagline" id="loaderTagline">Code · Creativity · Automation</div>
+    <div class="loader-progress" id="loaderProgress">
+      <div class="loader-progress-bar" id="loaderBar"></div>
+    </div>
+  </div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-logo">SANJAY<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="nav-cta">Let's Talk</a>
+      </div>
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="dot"></span>
+          Available for freelance projects
+        </div>
+        <h1 class="hero-title reveal">
+          I build <span class="highlight gradient-text">websites</span>, edit <span class="highlight gradient-text">videos</span>, and create <span class="highlight gradient-text">AI automations</span> that help brands grow.
+        </h1>
+        <p class="hero-description reveal">
+          Freelance Web Developer, Video Editor, and AI Automation Builder helping businesses create better digital experiences, stronger content, and smarter workflows.
+        </p>
+        <div class="hero-buttons reveal">
+          <a href="#projects" class="btn btn-primary">
+            <i data-lucide="layers" style="width:18px;height:18px"></i>
+            View My Work
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <i data-lucide="send" style="width:18px;height:18px"></i>
+            Hire Me
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <i data-lucide="message-circle" style="width:18px;height:18px"></i>
+            Let's Talk
+          </a>
+        </div>
+        <div class="hero-stats reveal">
+          <div class="hero-stat">
+            <h3 class="gradient-text counter" data-target="20">0</h3>
+            <p>Projects Done</p>
+          </div>
+          <div class="hero-stat">
+            <h3 class="gradient-text counter" data-target="15">0</h3>
+            <p>Happy Clients</p>
+          </div>
+          <div class="hero-stat">
+            <h3 class="gradient-text counter" data-target="3">0</h3>
+            <p>Service Pillars</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-image-wrapper">
+            <img src="sanjay.jpg.jpeg" alt="Sanjay M — Web Developer, Video Editor & AI Automation Builder" class="about-avatar">
+          </div>
+          <div class="about-float-card card-1">
+            <h4 class="gradient-text">3+</h4>
+            <p>Service Pillars</p>
+          </div>
+          <div class="about-float-card card-2">
+            <h4 class="gradient-text">20+</h4>
+            <p>Projects</p>
+          </div>
+        </div>
+        <div class="about-content reveal-right">
+          <span class="section-label">About Me</span>
+          <h2 class="section-title">Building digital experiences through <span class="gradient-text">code, creativity, and automation.</span></h2>
+          <p class="section-subtitle">
+            I'm Sanjay, a freelance creative professional who blends development, editing, and automation to build practical digital solutions. I work on websites, branded video content, and AI-powered workflows that save time and improve results.
+          </p>
+          <p class="about-detail">
+            I focus on work that is clean, modern, user-friendly, and result-driven.
+          </p>
+          <div class="about-tags">
+            <span class="about-tag">Web Developer</span>
+            <span class="about-tag">Video Editor</span>
+            <span class="about-tag">AI Builder</span>
+            <span class="about-tag">Creative Thinker</span>
+            <span class="about-tag">Problem Solver</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== SERVICES SECTION ========== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header">
+        <span class="section-label reveal">What I Do</span>
+        <h2 class="section-title reveal">Three pillars. <span class="gradient-text">One creative force.</span></h2>
+        <p class="section-subtitle reveal">Combining development, video editing, and AI automation to deliver complete digital solutions.</p>
+      </div>
+
+      <!-- Main Service Cards -->
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i data-lucide="code-2" style="width:28px;height:28px"></i>
+          </div>
+          <h3>Web Development</h3>
+          <p>Modern websites and landing pages built for speed, clean design, and better user experience.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i data-lucide="film" style="width:28px;height:28px"></i>
+          </div>
+          <h3>Video Editing</h3>
+          <p>Professional editing for reels, social media content, promo videos, and cinematic storytelling.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i data-lucide="bot" style="width:28px;height:28px"></i>
+          </div>
+          <h3>AI Automation</h3>
+          <p>Smart workflows and automation systems that reduce manual work and improve productivity.</p>
+        </div>
+      </div>
+
+      <!-- Detailed Service Breakdown -->
+      <div class="services-detail">
+        <div class="service-detail-card reveal">
+          <h4>🌐 Web Development</h4>
+          <ul>
+            <li>Portfolio websites</li>
+            <li>Business websites</li>
+            <li>Landing pages</li>
+            <li>Responsive UI design</li>
+            <li>Frontend development</li>
+          </ul>
+        </div>
+        <div class="service-detail-card reveal">
+          <h4>🎬 Video Editing</h4>
+          <ul>
+            <li>Instagram reels</li>
+            <li>YouTube edits</li>
+            <li>Promo videos</li>
+            <li>Motion graphics</li>
+            <li>Short-form content editing</li>
+          </ul>
+        </div>
+        <div class="service-detail-card reveal">
+          <h4>🤖 AI Automation</h4>
+          <ul>
+            <li>Workflow automation</li>
+            <li>AI-based content systems</li>
+            <li>Lead/process automation</li>
+            <li>Productivity tools</li>
+            <li>Custom automation setup</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== WHY WORK WITH ME ========== -->
+  <section class="why-me" id="why-me">
+    <div class="container">
+      <div class="why-me-header">
+        <span class="section-label reveal">Why Me</span>
+        <h2 class="section-title reveal">Why clients <span class="gradient-text">choose to work with me.</span></h2>
+      </div>
+      <div class="why-me-grid">
+        <div class="why-card reveal">
+          <div class="why-icon">
+            <i data-lucide="sparkles" style="width:28px;height:28px"></i>
+          </div>
+          <h4>Creative + Technical</h4>
+          <p>Blending artistic vision with technical expertise for well-rounded solutions.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">
+            <i data-lucide="palette" style="width:28px;height:28px"></i>
+          </div>
+          <h4>Clean & Modern Output</h4>
+          <p>Every project is polished, minimal, and built with attention to detail.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">
+            <i data-lucide="target" style="width:28px;height:28px"></i>
+          </div>
+          <h4>Focused on Client Goals</h4>
+          <p>I align every deliverable with your business objectives and end-user needs.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">
+            <i data-lucide="zap" style="width:28px;height:28px"></i>
+          </div>
+          <h4>Fast & Adaptable</h4>
+          <p>Quick learner who adapts to new tools, frameworks, and creative challenges.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== PROJECTS SECTION ========== -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="projects-header">
+        <span class="section-label reveal">Featured Work</span>
+        <h2 class="section-title reveal">Selected projects that <span class="gradient-text">showcase my craft.</span></h2>
+        <p class="section-subtitle reveal">A curated selection of work across web development, video editing, and automation.</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <span class="project-number">01</span>
+          <span class="project-category">AI · Full-Stack</span>
+          <h3>SmartApply India <span style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">(Final Year Project)</span></h3>
+          <p>Built an AI-driven job application assistant integrating ATS scoring, resume parsing, and LLM-based optimization workflows. Features a custom ATS engine with keyword extraction, Groq AI for automated resume enhancement, and Syncfusion-powered PDF generation.</p>
+          <div class="project-tags">
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Supabase</span>
+            <span class="project-tag">Firebase Auth</span>
+            <span class="project-tag">Groq API</span>
+            <span class="project-tag">Provider</span>
+            <span class="project-tag">Syncfusion PDF</span>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <span class="project-number">02</span>
+          <span class="project-category">AI · Automation</span>
+          <h3>AI Job Assistant</h3>
+          <p>Integrated Flutter frontend with n8n backend via REST webhooks. Built LLM workflows for job analysis, summarization, and ATS keyword extraction. Implemented RAG-based context handling and automated AI pipelines using LangChain and OpenAI API.</p>
+          <div class="project-tags">
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">n8n</span>
+            <span class="project-tag">OpenAI API</span>
+            <span class="project-tag">LangChain</span>
+            <span class="project-tag">RAG</span>
+            <span class="project-tag">Docker</span>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <span class="project-number">03</span>
+          <span class="project-category">Backend</span>
+          <h3>URL Shortener Service</h3>
+          <p>Developed REST APIs for URL generation, redirection, and click tracking. Designed a scalable database schema with modular backend architecture using Flask and MySQL.</p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Flask</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">REST API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== SKILLS SECTION ========== -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <div class="skills-header">
+        <span class="section-label reveal">Skills & Tools</span>
+        <h2 class="section-title reveal">Technologies I <span class="gradient-text">work with every day.</span></h2>
+      </div>
+      <div class="skills-categories">
+        <div class="skill-group reveal">
+          <h4><span>🌐</span> Web Development</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">Firebase</span>
+            <span class="skill-tag">Python</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h4><span>🎬</span> Video Editing</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Premiere Pro</span>
+            <span class="skill-tag">After Effects</span>
+            <span class="skill-tag">DaVinci Resolve</span>
+            <span class="skill-tag">CapCut</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h4><span>🤖</span> Automation / AI</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">n8n</span>
+            <span class="skill-tag">OpenAI API</span>
+            <span class="skill-tag">Workflow Automation</span>
+            <span class="skill-tag">Prompt Design</span>
+            <span class="skill-tag">Integrations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== WHO I HELP ========== -->
+  <section class="who-help" id="who-help">
+    <div class="container">
+      <div class="who-help-content">
+        <span class="section-label reveal">Who I Help</span>
+        <h2 class="section-title reveal">Built for <span class="gradient-text">creators, startups & small businesses.</span></h2>
+        <p class="section-subtitle reveal">I help people who need a strong online presence, better content, and smarter systems.</p>
+        <div class="who-help-list">
+          <div class="who-help-item reveal">
+            <i data-lucide="globe" style="width:20px;height:20px"></i>
+            A strong online presence
+          </div>
+          <div class="who-help-item reveal">
+            <i data-lucide="video" style="width:20px;height:20px"></i>
+            Better content
+          </div>
+          <div class="who-help-item reveal">
+            <i data-lucide="cpu" style="width:20px;height:20px"></i>
+            Smarter systems
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== TRUST SECTION ========== -->
+  <section class="trust" id="trust">
+    <div class="container">
+      <div class="trust-header">
+        <span class="section-label reveal">Why Trust Me</span>
+        <h2 class="section-title reveal">What I bring to <span class="gradient-text">every project.</span></h2>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card reveal">
+          <i data-lucide="lightbulb" style="width:32px;height:32px"></i>
+          <h4>Creative Problem Solving</h4>
+        </div>
+        <div class="trust-card reveal">
+          <i data-lucide="layers" style="width:32px;height:32px"></i>
+          <h4>Multi-skill Freelancer</h4>
+        </div>
+        <div class="trust-card reveal">
+          <i data-lucide="eye" style="width:32px;height:32px"></i>
+          <h4>Strong Attention to Detail</h4>
+        </div>
+        <div class="trust-card reveal">
+          <i data-lucide="check-circle" style="width:32px;height:32px"></i>
+          <h4>Focus on Practical Results</h4>
+        </div>
+      </div>
+      <div class="trust-available reveal">
+        <span class="dot"></span>
+        Available for freelance projects and collaborations
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <span class="section-label reveal">Get In Touch</span>
+        <h2 class="section-title reveal">Have a project in mind? <span class="gradient-text">Let's build something valuable.</span></h2>
+        <p class="contact-description reveal">
+          Need a website, edited content, or an automation system? I'm just a message away. Let's discuss how I can help bring your vision to life.
+        </p>
+        <div class="contact-buttons reveal">
+          <a href="mailto:sanjay@example.com" class="contact-btn contact-btn-email">
+            <i data-lucide="mail" style="width:20px;height:20px"></i>
+            Email Me
+          </a>
+        </div>
+        <div class="contact-socials reveal">
+          <a href="https://www.linkedin.com/in/sanjay-m-bb70b3272" target="_blank" class="social-link" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.instagram.com/thedigitalhorizon_?igsh=aG15dmhseHdjOHZ6" target="_blank" class="social-link" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="https://github.com/sanjaym-svg" target="_blank" class="social-link" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== FEEDBACK SECTION ========== -->
+  <section class="feedback" id="feedback">
+    <div class="container">
+      <div class="feedback-header">
+        <span class="section-label reveal">Feedback</span>
+        <h2 class="section-title reveal">Share your <span class="gradient-text">thoughts about my work.</span></h2>
+        <p class="section-subtitle reveal">Your feedback helps me improve and grow. Leave a message and let me know how I'm doing!</p>
+      </div>
+
+      <!-- Feedback Form -->
+      <div class="feedback-form-wrapper reveal">
+        <form id="feedbackForm" class="feedback-form">
+          <div class="form-group">
+            <input type="text" id="feedbackName" placeholder="Your Name" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <textarea id="feedbackMessage" placeholder="Your feedback or message..." rows="4" required></textarea>
+          </div>
+          <div class="form-group form-group-row">
+            <div class="star-rating" id="starRating">
+              <span class="star-label">Rating:</span>
+              <button type="button" class="star-btn" data-value="1">★</button>
+              <button type="button" class="star-btn" data-value="2">★</button>
+              <button type="button" class="star-btn" data-value="3">★</button>
+              <button type="button" class="star-btn" data-value="4">★</button>
+              <button type="button" class="star-btn" data-value="5">★</button>
+            </div>
+            <button type="submit" class="btn btn-primary feedback-submit">
+              <i data-lucide="send" style="width:18px;height:18px"></i>
+              Submit Feedback
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Feedback Display -->
+      <div class="feedback-display" id="feedbackDisplay"></div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Sanjay M. All rights reserved.</p>
+        <p>Built with <span class="gradient-text">passion</span> and clean code.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main Script -->
+  <script src="scripts.js"></script>
+</body>
+</html>
