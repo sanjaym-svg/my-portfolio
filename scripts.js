@@ -519,6 +519,15 @@ document.addEventListener('DOMContentLoaded', () => {
     item.style.transform = 'translateY(20px)';
   });
 
+  // ========== SUPABASE INIT ==========
+  const SUPABASE_URL = 'https://bjwctmqpwauanpmmkaiq.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqd2N0bXFwd2F1YW5wbW1rYWlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyMzIwODcsImV4cCI6MjA4ODgwODA4N30.BTkz0DRldz6Y4X7bw09FA-0VZKV5bENY6Y3k2QuP_qo';
+
+  let supabase = null;
+  if (typeof window.supabase !== 'undefined' && window.supabase.createClient) {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
   // ========== FEEDBACK SYSTEM ==========
   const feedbackForm = document.getElementById('feedbackForm');
   const feedbackDisplay = document.getElementById('feedbackDisplay');
@@ -549,29 +558,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Load and render feedback
-  function loadFeedback() {
-    const feedbacks = JSON.parse(localStorage.getItem('portfolio_feedbacks') || '[]');
+  // Load and render feedback from Supabase
+  async function loadFeedback() {
     if (!feedbackDisplay) return;
 
-    if (feedbacks.length === 0) {
-      feedbackDisplay.innerHTML = '<p class="no-feedback">No feedback yet. Be the first to share your thoughts!</p>';
+    if (!supabase) {
+      feedbackDisplay.innerHTML = '<p class="no-feedback">Feedback system loading...</p>';
       return;
     }
 
-    feedbackDisplay.innerHTML = feedbacks.map(fb => `
-      <div class="feedback-card">
-        <div class="feedback-card-header">
-          <div class="feedback-avatar">${fb.name.charAt(0).toUpperCase()}</div>
-          <div>
-            <h4>${escapeHTML(fb.name)}</h4>
-            <div class="feedback-stars">${'★'.repeat(fb.rating)}${'☆'.repeat(5 - fb.rating)}</div>
+    try {
+      const { data: feedbacks, error } = await supabase
+        .from('feedbacks')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error loading feedbacks:', error);
+        feedbackDisplay.innerHTML = '<p class="no-feedback">Could not load feedback. Please try again later.</p>';
+        return;
+      }
+
+      if (!feedbacks || feedbacks.length === 0) {
+        feedbackDisplay.innerHTML = '<p class="no-feedback">No feedback yet. Be the first to share your thoughts!</p>';
+        return;
+      }
+
+      feedbackDisplay.innerHTML = feedbacks.map(fb => `
+        <div class="feedback-card">
+          <div class="feedback-card-header">
+            <div class="feedback-avatar">${escapeHTML(fb.name).charAt(0).toUpperCase()}</div>
+            <div>
+              <h4>${escapeHTML(fb.name)}</h4>
+              <div class="feedback-stars">${'★'.repeat(fb.rating)}${'☆'.repeat(5 - fb.rating)}</div>
+            </div>
           </div>
+          <p>${escapeHTML(fb.message)}</p>
+          <span class="feedback-date">${new Date(fb.created_at).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
         </div>
-        <p>${escapeHTML(fb.message)}</p>
-        <span class="feedback-date">${new Date(fb.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-      </div>
-    `).join('');
+      `).join('');
+    } catch (err) {
+      console.error('Feedback load error:', err);
+      feedbackDisplay.innerHTML = '<p class="no-feedback">Could not load feedback.</p>';
+    }
   }
 
   function escapeHTML(str) {
@@ -580,10 +609,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return div.innerHTML;
   }
 
-  // Submit feedback
+  // Submit feedback to Supabase
   if (feedbackForm) {
-    feedbackForm.addEventListener('submit', (e) => {
+    feedbackForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      if (!supabase) {
+        showToast('Feedback system is not available right now.', 'error');
+        return;
+      }
+
       const name = document.getElementById('feedbackName').value.trim();
       const message = document.getElementById('feedbackMessage').value.trim();
 
@@ -592,31 +627,50 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const feedbacks = JSON.parse(localStorage.getItem('portfolio_feedbacks') || '[]');
-      feedbacks.unshift({
-        name,
-        message,
-        rating: selectedRating,
-        date: new Date().toISOString()
-      });
-      localStorage.setItem('portfolio_feedbacks', JSON.stringify(feedbacks));
-
-      feedbackForm.reset();
-      selectedRating = 0;
-      if (starRating) {
-        starRating.querySelectorAll('.star-btn').forEach(s => s.classList.remove('selected'));
+      // Disable submit button while saving
+      const submitBtn = feedbackForm.querySelector('.feedback-submit');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
       }
 
-      loadFeedback();
-      showToast('Thank you for your feedback! 🎉', 'success');
+      try {
+        const { error } = await supabase
+          .from('feedbacks')
+          .insert([{ name, message, rating: selectedRating }]);
 
-      // Animate new card in
-      const firstCard = feedbackDisplay.querySelector('.feedback-card');
-      if (firstCard) {
-        gsap.fromTo(firstCard,
-          { opacity: 0, y: 20, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power2.out' }
-        );
+        if (error) {
+          console.error('Error saving feedback:', error);
+          showToast('Failed to submit feedback. Please try again.', 'error');
+          return;
+        }
+
+        feedbackForm.reset();
+        selectedRating = 0;
+        if (starRating) {
+          starRating.querySelectorAll('.star-btn').forEach(s => s.classList.remove('selected'));
+        }
+
+        await loadFeedback();
+        showToast('Thank you for your feedback! 🎉', 'success');
+
+        // Animate new card in
+        const firstCard = feedbackDisplay.querySelector('.feedback-card');
+        if (firstCard) {
+          gsap.fromTo(firstCard,
+            { opacity: 0, y: 20, scale: 0.95 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power2.out' }
+          );
+        }
+      } catch (err) {
+        console.error('Submit error:', err);
+        showToast('Something went wrong. Please try again.', 'error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i data-lucide="send" style="width:18px;height:18px"></i> Submit Feedback';
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
       }
     });
   }
@@ -650,3 +704,4 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load feedback on page load
   loadFeedback();
 });
+
